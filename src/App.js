@@ -1,23 +1,43 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+
+   const [students, setStudents] = useState(['sreekanth', 'viratkohli', 'dhoni']) 
+  
+   const[newstudent, setNewStudent] = useState('')
+
+   function handleChange(e){
+    setNewStudent(e.target.value)
+   }
+
+   function addStudent(){
+    setStudents([...students, newstudent])
+   }
+
+    function deleteBtn(i){
+      var temp = [...students]
+      temp.splice(i,1)
+      setStudents([...temp])
+      alert(i)
+    }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <input type="text" onChange={handleChange} />
+      <button onClick={addStudent}> Add Student </button>   
+
+      {
+        students.map((student, i)=>{
+          return <>
+               <li>
+                  {student}
+                  <button onClick={()=>{deleteBtn(i)}}>  Delete </button>
+               </li>
+          </>
+        })
+      }
     </div>
   );
 }
