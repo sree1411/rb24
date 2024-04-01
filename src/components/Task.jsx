@@ -1,21 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 function Task(props) {
     console.log("hi",props)
+     useEffect(()=>{
+          console.log('with dependency and empty array', props.student)
+     }, [])
+
+     useEffect(()=>{
+        console.log('with dependency array', props.student)
+      })
+
+
   return (
       <>
-        {
-          props.students.map((student,i)=>{
-              return <>
-                      <li>
-                         {student}
-                         <button onClick={()=>{props.deletebtn(i)}} > delete </button>
-                      </li>
-                     </>
-          })
-        }
+        <h1> {props.student}</h1>
+        <button onClick={()=>{props.deletebtn(props.i)}}> delete</button>
       </>
   )
 }
 
-export default Task
+export default React.memo(Task)
