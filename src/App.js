@@ -1,25 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import Counter from './components/Counter';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <Counter initvalue={0} person ="sreekanth"/>
+       <Counter initvalue={0} person ="virat"/>
+       <Counter initvalue={0} person ="dhoni"/>
+       <Counter initvalue={0} person ="yuvraj"/>
     </div>
   );
 }
 
 export default App;
+
+/// this is the one we create the componet differnt persons can create the differnt 
+//score board and increase there values with the props communication
