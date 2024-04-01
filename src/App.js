@@ -1,25 +1,40 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import First from './components/First';
+import UserContext from './components/UserContext';
 
 function App() {
+
+  const [myname, setMyName] = useState([{
+      name:"iphone",
+      cost:12000
+  },
+    {
+      name:"redme",
+      cost:12000
+    },
+
+
+])
+
+
+const [count, setCount] = useState(0)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+     <>
+
+       <UserContext.Provider value={{myname, count}}>
+               <First />
+       </UserContext.Provider>
+     
+     </>
+       
   );
 }
 
 export default App;
+
+// usecontext hook lo two values of function lani pampali ante
+// ela rayali value={{myname, count}}  and vatini use chesukovali ante
+//ekada edi use avutado apudu {} object method lo rayali
+//like  const { myname, count }= useContext(UserContext) ela rasukoni use chesukovali 
