@@ -2,7 +2,7 @@ import React from 'react'
 import useCounter from './useCounter'
 
 function TxtCounter() {
-    const [count, incbtn, decbtn] = useCounter()
+    const [count, incbtn, decbtn] = useCounter(10)
   return (
       <>
       <h1> count :{count} </h1>
