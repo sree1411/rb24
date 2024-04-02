@@ -1,24 +1,46 @@
-import logo from './logo.svg';
+ 
+import { useState } from 'react';
 import './App.css';
+import First from './components/First';
+import UseContext from './components/UseContext';
 
 function App() {
+
+   const [myname, setMyname] = useState([
+         {
+         name:"sree",
+         age:22,
+         num:1234
+         },
+         {
+            name:"virat",
+            age:22,
+            num:1234
+         },
+      {
+         name:"dhoni",
+         age:22,
+         num:1234
+      },
+   
+   
+   
+   ])
+
+ const [count, setCount] = useState(0)
+
+  const incBtn =()=>{
+   setCount(count + 1)
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+     <>
+        <UseContext.Provider value={{myname, count, incBtn}}>
+             <First />
+        </UseContext.Provider>
+        
+     </>
   );
 }
 
