@@ -1,8 +1,13 @@
 import React from 'react'
+import Accordion from '../maincomponents/Accordion'
+ 
+ 
 
 const LoginPage2 = () => {
   return (
-    <div>LoginPage2</div>
+     <>
+     <Accordion/>
+     </>
   )
 }
 
