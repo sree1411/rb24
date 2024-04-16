@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+  list-style: none;
+}
+
+.nav-sidebar {
+  width: 300px;
+  height: 100vh;
+  background-color: #343a40;
+  color: #fff;
+  position: fixed;
+  transition: width 2s ease;
+}
+.nav-sidebar .logo{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.nav-sidebar.active{
+  width: 80px;
+}
+
+.nav-sidebar.active h3 {
+  /* display: none; */
+  transition: h3 2s ease;
+}
+
+ 
+
+#showId{
+  cursor: pointer;
+}
+
+.container {
+  width: 100%;            /* Container takes full width of the parent */
+  background-color: aqua; /* Background color of the container */
+  height: 80vh;           /* Height set to 80% of the viewport height */
+  display: flex;
+
+}
+
+.nav-sidebar .sidebar-menu ul li .sm-text{
+  display: none;
+}
+
+
+.nav-sidebar.active .sidebar-menu ul li .sm-text{
+   display: block;
+}
