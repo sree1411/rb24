@@ -3,11 +3,10 @@ import axios from 'axios';
 import './App.css';
 
 function App() {
-
-//here we created the sort method by using the button 
-// when we click the button it will work according to the function 
+ 
 
    const[countries, setCountries] = useState([])
+   const [newCountries, setNewCountries] = useState('')
 
 
     useEffect(()=>{
@@ -16,78 +15,46 @@ function App() {
      }).catch((error)=>console.log(error.message))
     },[])
 
+ 
 
-   const regionBtnAtoZ = ()=>{
-     countries.sort((a,b)=>{
-      
-      const nameA = a.region.toLowerCase()
-      const nameB = b.region.toLowerCase()
+ 
 
-      if(nameA > nameB){
-        return +1
-      } else {
-        return -1
-      }
-     })
-     setCountries([...countries])
-   }
-
-   const regionBtnZtoA = ()=>{
-    countries.sort((a,b)=>{
-     
-     const nameA = a.region.toLowerCase()
-     const nameB = b.region.toLowerCase()
-
-     if(nameA > nameB){
-       return -1
-     } else {
-       return +1
-     }
-    })
-    setCountries([...countries])
+  const handleSelectRegion =(e)=>{
+    setNewCountries(e.target.value)
+  }
+ 
+  let  filteredCountries;
+  if(newCountries){
+    filteredCountries = countries.filter((country)=>country.region === newCountries)
+  }else{
+    filteredCountries = countries
   }
 
+ 
 
-const poputionBtnLow =()=>{
-  countries.sort((a,b)=>{
-      
-    const nameA = a.population 
-    const nameB = b.population 
-
-    if(nameA > nameB){
-      return +1
-    } else {
-      return -1
-    }
-   })
-   setCountries([...countries])
-}
-
-const poputionBtnHigh =()=>{
-  countries.sort((a,b)=>{
-      
-    const nameA = a.population 
-    const nameB = b.population 
-
-    if(nameA > nameB){
-      return -1
-    } else {
-      return 1
-    }
-   })
-   setCountries([...countries])
-}
+  const uniqueregions = (countries)=>{
+    let findRegion = countries.map((country)=>country.region)
+    let uniqueValue = Array.from(new Set(findRegion))
+    let getRegion = uniqueValue.filter((region)=>region)
+    return getRegion;
+  }
+ 
+ const sortRegion = uniqueregions(countries).sort()
 
   return (
      <>
      
-       <div className='button-section'>
-          <button onClick={regionBtnAtoZ}> Sort by Region A-Z </button>
-          <button onClick={regionBtnZtoA}> Sort by Region Z-A </button>
-          <button onClick={poputionBtnLow}> Sort by Population Low - High </button>
-          <button onClick={poputionBtnHigh} > Sort by Population High - Low </button>
-       </div>
+      <select onChange={handleSelectRegion}>
+        {
+          sortRegion.map((region)=>{
+            return <>
+                   <option value={region}> {region} </option>
+               </>
+          })
+        }
+      </select>
 
+   
 
      <table class="table">
   <thead>
@@ -101,7 +68,7 @@ const poputionBtnHigh =()=>{
   </thead>
   <tbody>
     {
-      countries.map((country,i)=>{
+      filteredCountries.map((country,i)=>{
         return <>
           <tr>
             <th scope="row">{i+1}</th>
