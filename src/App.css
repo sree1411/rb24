@@ -41,3 +41,61 @@ body{
     display: flex;
     flex-wrap: wrap;
 }
+
+/* App.css */
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; /* Adds spacing between items */
+    padding: 1rem; /* Adds padding around the container */
+    justify-content: center; /* Centers the cards horizontally */
+  }
+  
+  .card {
+    width: 18rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px); /* Adds a hover effect */
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .card-body p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+  
+  .card-body .links {
+    margin-top: 1rem;
+  }
+  
+  .card-body .links p {
+    color: #007bff;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 1rem;
+    text-decoration: none;
+  }
+  
+  .card-body .links p:hover {
+    text-decoration: underline;
+  }
+  
+  .card-body .links i {
+    margin-left: 0.5rem;
+  }
+  
+  .bb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
