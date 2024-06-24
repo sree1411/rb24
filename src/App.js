@@ -4,8 +4,7 @@ import "./App.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState([]);
+  
 
   useEffect(() => {
     axios.get("https:restcountries.com/v3.1/all").then((res) => {
