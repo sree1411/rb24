@@ -3,89 +3,160 @@ import axios from "axios";
 import "./App.css";
 
 function App() {
-  const [products, setProducts] = useState([]);
+  const [countries, setCountries] = useState([]);
 
   useEffect(() => {
-    axios.get("https://fakestoreapi.com/products").then((res) => {
-      setProducts(res.data);
+    axios.get("https:restcountries.com/v3.1/all").then((res) => {
+      setCountries(res.data);
     });
-    
   }, []);
 
+  function sortByRegionAz() {
+    let data = [...countries];
+    let sortedvalue = data.sort((a, b) => {
+      let a1 = a.region.toLowerCase();
+      let b1 = b.region.toLowerCase();
 
-  
-
-  function lowPriceBtn(){
-    // let sortedValues =[...products].sort((a,b)=>a.price - b.price);
-    // setProducts(sortedValues)
-    // let res = products.sort((a,b)=>a.price - b.price);
-    // console.log(res)
-    // setProducts([...res])
-    const sortedProducts = [...products];
-
-  // Sort the cloned array by price ascending
-  sortedProducts.sort((a, b) => a.price - b.price);
-
-  // Update state with the sorted array
-  setProducts(sortedProducts);
-  
+      if (a1 > b1) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+    setCountries(sortedvalue);
   }
- 
- 
 
-  function HighPriceBtn(){
-    let sortedValues =[...products].sort((a,b)=>b.price-a.price);
-    setProducts(sortedValues)
- }
+  function sortByRegionZa() {
+    let data = [...countries];
+    let sortedvalue = data.sort((a, b) =>
+      b.region.toLowerCase().localeCompare(a.region.toLowerCase())
+    );
+    setCountries(sortedvalue);
+  }
 
-  
- 
- 
+  function sortByCapitalAz() {
+    let data = [...countries];
+    let result = data.sort((a, b) => {
+      let a1 = a.capital ? a.capital[0].toLowerCase():""
+      
+      let b1 = b.capital ? b.capital[0].toLowerCase():""
 
+      if (a1 > b1) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+    setCountries(result);
+  }
+
+  function sortByCapitalZa() {
+    let data = [...countries];
+    let result = data.sort((a, b) => {
+    
+      let a1 = a.capital ? a.capital[0].toLowerCase():""
+      
+      let b1 = b.capital ? b.capital[0].toLowerCase():""
+
+      if (a1 > b1) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+    setCountries(result);
+  }
+
+  function sortByPopulation1(){
+    let data = [...countries]
+    let result = data.sort((a,b)=>a.population - b.population)
+    setCountries(result)
+  }
+
+  function sortByPopulation2(){
+    let data = [...countries]
+    let result = data.sort((a,b)=>b.population - a.population)
+    setCountries(result)
+  }
+
+
+   function sortBycontinent1(){
+    let data = [...countries]
+    let result = data.sort((a,b)=>{
+      let a1 = a.continents ? a.continents[0].toLowerCase() :""
+      let b1 = b.continents ? b.continents[0].toLowerCase() :""
+
+       return a1.localeCompare(b1)
+
+    })
+    setCountries(result)
+   }
+
+   function sortBycontinent2(){
+    let data = [...countries]
+    let result = data.sort((a,b)=>{
+      let a1 = a.continents ? a.continents[0].toLowerCase() :""
+      let b1 = b.continents ? b.continents[0].toLowerCase() :""
+
+       return b1.localeCompare(a1)
+
+    })
+    setCountries(result)
+   }
 
 
   return (
     <div className="App">
 
 
-      {/* <button onClick={lowPriceBtn}> Low-High</button> */}
-      <button onClick={()=>HighPriceBtn()} > High-Low</button>
-      <button onClick={()=>lowPriceBtn()}> Low-High</button>
+
+<button className="btn btn-success" onClick={sortBycontinent1} > continent a-z</button>   
+<button className="btn btn-danger"onClick={sortBycontinent2} > continent z-a</button>   
+
+     <button className="btn btn-success" onClick={sortByPopulation1} > population Low-High</button>   
+     <button className="btn btn-danger"onClick={sortByPopulation2} > population High-Low</button>   
+
+
+
+      <button onClick={sortByRegionAz} className="btn btn-success">
+        Sort By Region A- Z
+      </button>{" "}
+      
+      <button onClick={sortByRegionZa} className="btn btn-danger">
+        Sort By Region Z-A
+      </button>{" "}
+      
+      
+      <button onClick={sortByCapitalAz} className="btn btn-success">
+        Sort By Capital A- Z
+      </button>{" "}
+      
+      <button onClick={sortByCapitalZa} className="btn btn-danger">
+        Sort By Capital Z-A
+      </button>
+
 
       <table className="table">
         <thead>
           <tr>
-            <th>id</th>
-            <th>title</th>
-            <th>category</th>
-            <th>description</th>
-            <th>image</th>
-            <th>price</th>
-            <th>rating</th>
+            <th>s.no</th>
+            <th>Region</th>
+            <th>Capital</th>
+            <th>Continents</th>
+            <th>population</th>
           </tr>
         </thead>
         <tbody>
-          {
-           products.length>0 && products.map((product)=>(
-                  
-                   <tr key={product.id}>
-                    <td>{product.id}</td>
-                    <td>{product.title}</td>
-                    <td>{product.category}</td>
-                    <td>{product.description}</td>
-                    <td> <img src={product.image} alt="product.imagesra" width="20px"/> </td>
-                    <td>{product.price}</td>
-                     <td>{`Rate: ${product.rating.rate},  Count: ${product.rating.count}` }</td>
-                    
-                 </tr>
-                   
-                  
-                   
-            ))
-          }
-          <tr>
-           
-          </tr>
+          {countries.length > 0 &&
+            countries.map((country, index) => (
+              <tr>
+                <td>{index + 1}</td>
+                <td>{country.region}</td>
+                <td>{country.capital}</td>
+                <td>{country.continents}</td>
+                <td>{country.population}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
@@ -93,46 +164,3 @@ function App() {
 }
 
 export default App;
-
-
- //  async function fetchData(){
-      
-  //     try {
-  //       let response = await fetch("https://fakestoreapi.com/products")
-  //       if(!response.ok){
-  //          throw new Error("net work error")
-  //       }
-  //       let data = await response.json();
-  //       console.log("data", data)
-  //       return data
-  //     } catch (error) {
-  //       throw new Error("invali input please check it")
-  //     }
-
-
-  //  }
-  //  fetchData();
-
-
-
-    // fetch("https://fakestoreapi.com/products").then((res)=> res.json()).then(data=> console.log(data, "bida")).catch((error)=>{
-  //   console.log(error)
-  // })
-
-    //  useEffect(()=>{
-   
-  //  const fetchData  = async ()=>{
-  //      try {
-  //        let response = await axios.get("https://fakestoreapi.com/products")
-  //        if (response.status !== 200) {
-  //         throw new Error("Failed to fetch data");
-  //       }
-  //        let data = response.data;
-  //        console.log("He", data)
-  //        return data
-  //      } catch (error) {
-  //        console.log(error)
-  //      }
-  //  }
-  //  fetchData()
-  //  }, [])
