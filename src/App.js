@@ -64,7 +64,28 @@ function App() {
   let totalMobileList = mobiles.map((m)=>m.name).reduce(result, {});
 
 
+  let nokia = ['4 GB RAM | 64 GB ROM | Expandable Upto 1 TB', "16.76 cm (6.6 inch) HD+ Display", "16MP Rear Camera | 5MP Front Camera", "5000 mAh Battery", "5G"]
+  let samsu = ['4 GB RAM | 64 GB ROM | Expandable Upto 1 TB', "15.76 cm (6.6 inch) HD+ Display", "16MP Rear Camera | 15MP Front Camera", "5000 mAh Battery", "5G"]
+  let jio =  ['4 GB RAM | 64 GB ROM | Expandable Upto 1 TB', "14.76 cm (6.6 inch) HD+ Display", "16MP Rear Camera | 5MP Front Camera", "5000 mAh Battery", "5G"]
+  
 
+  
+
+  function featuresMOb(...array){    
+        return array.reduce((first, second)=> [...new Set(first.concat(second))])
+  }
+  let allFeatures = featuresMOb(nokia, samsu, jio)
+ 
+
+
+  function filterFeature(...array){
+      return array.reduce((first,second)=>{
+            return first.filter((f)=>second.includes(f))
+       })
+  }
+  let commonFeature = filterFeature(nokia, samsu, jio)
+ 
+   
 
   return (
     <div className="App">
@@ -131,6 +152,23 @@ function App() {
           ))}
         </tbody>
       </table>
+
+       <p> All Features :{
+        allFeatures.map((el, index)=>{
+             return <p>{el}</p>
+        })
+       }</p>
+       
+       <h3>Common Feature :
+       {
+        commonFeature.map((el, index)=>{
+             return <p key={index}>{el}</p>
+        })
+       }
+           
+        
+        </h3>
+
     </div>
   );
 }
