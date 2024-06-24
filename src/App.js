@@ -99,7 +99,10 @@ function App() {
           <tr>
             <th> Name </th>
             <th> Brand Models </th>
-            <th> Price </th>
+            <th> Price
+              
+            </th>
+        
           </tr>
         </thead>
         <tbody>
@@ -108,11 +111,22 @@ function App() {
               <tr key={index}>
                 <td>{mobile.name}</td>
                 <td>{mobile.brand}</td>
-                <td>{mobile.price}</td>
+                <td>{mobile.price}
+                </td>
+                <td>
+                   
+                </td>
               </tr>
             ))}
+            <tr>
+            <td>Total:</td>
+            <td></td>
+            <td>{totalPrice}</td>
+          </tr>
         </tbody>
       </table>
+
+      
       <h1>Total Price Of All Mobiles:{totalPrice}</h1>
       <table className="table" style={{ width: "50px" }}>
         <thead>
@@ -129,7 +143,6 @@ function App() {
               <tr key={index}>
                 <td>{name} </td>
                 <td>{totalBrandList[name]} 
-                   
                 </td>
                 
              
