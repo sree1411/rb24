@@ -39,6 +39,10 @@ function App() {
     },
   ];
 
+
+ 
+
+
   //total price of allMobiles
 
   let totalPrice = mobiles
@@ -61,6 +65,7 @@ function App() {
 
 
   let totalBrandList = mobiles.map((m)=>m.brand).reduce(result, {});
+  let  priceList = mobiles.map((m)=>m.price).reduce(result, {});
   let totalMobileList = mobiles.map((m)=>m.name).reduce(result, {});
 
 
@@ -115,16 +120,20 @@ function App() {
           <tr>
             <th>Brand Model</th>
             <th>Count</th>
+            <th>Price</th>
+
           </tr>
         </thead>
         <tbody>
-          {Object.keys(totalBrandList).map((name, index) => (
+          {Object.keys(totalBrandList).map((name,index) => (
             <>
               <tr key={index}>
                 <td>{name} </td>
                 <td>{totalBrandList[name]} 
                    
                 </td>
+                
+             
 
               </tr>
             </>
