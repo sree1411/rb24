@@ -4,12 +4,16 @@ import "./App.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState([]);
 
   useEffect(() => {
     axios.get("https:restcountries.com/v3.1/all").then((res) => {
       setCountries(res.data);
     });
   }, []);
+
+  
 
   function sortByRegionAz() {
     let data = [...countries];
@@ -105,11 +109,13 @@ function App() {
    }
 
 
+ 
+
+
   return (
     <div className="App">
 
-
-
+    
 <button className="btn btn-success" onClick={sortBycontinent1} > continent a-z</button>   
 <button className="btn btn-danger"onClick={sortBycontinent2} > continent z-a</button>   
 
@@ -135,6 +141,8 @@ function App() {
         Sort By Capital Z-A
       </button>
 
+
+  
 
       <table className="table">
         <thead>
