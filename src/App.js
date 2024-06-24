@@ -119,8 +119,7 @@ function App() {
               </tr>
             ))}
             <tr>
-            <td>Total:</td>
-            <td></td>
+            <td  style={{ border: "1px solid black", padding: "8px", textAlign: "right" }} colSpan="2">Total:</td>
             <td>{totalPrice}</td>
           </tr>
         </tbody>
