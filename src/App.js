@@ -65,7 +65,6 @@ function App() {
 
 
   let totalBrandList = mobiles.map((m)=>m.brand).reduce(result, {});
-  let  priceList = mobiles.map((m)=>m.price).reduce(result, {});
   let totalMobileList = mobiles.map((m)=>m.name).reduce(result, {});
 
 
