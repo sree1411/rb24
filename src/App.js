@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
@@ -18,9 +18,9 @@ function App() {
 useEffect(()=>{
 
    let result = countries.filter((f)=>{
-      return  f.capital && f.capital[0].toLowerCase().includes(searchTerm.toLowerCase()) ||
-              f.region &&  f.region.toLowerCase().includes(searchTerm.toLowerCase()) ||
-              f.continents && f.continents[0].toLowerCase().includes(searchTerm.toLowerCase())
+      return ( ((f.capital && f.capital[0].toLowerCase().includes(searchTerm.toLowerCase())) ||
+              ( f.region && f.region.toLowerCase().includes(searchTerm.toLowerCase())) ||
+             ( f.continents && f.continents[0].toLowerCase().includes(searchTerm.toLowerCase())) ))
 
    })
 
