@@ -17,14 +17,21 @@ function App() {
 
 useEffect(()=>{
 
-   let result = countries.filter((f)=>{
+  if(searchTerm === ""){
+    setSearchResults([...countries])
+  }else{
+    let result = countries.filter((f)=>{
       return ( ((f.capital && f.capital[0].toLowerCase().includes(searchTerm.toLowerCase())) ||
               ( f.region && f.region.toLowerCase().includes(searchTerm.toLowerCase())) ||
              ( f.continents && f.continents[0].toLowerCase().includes(searchTerm.toLowerCase())) ))
 
    })
-
    setSearchResults(result)
+  }
+
+   
+
+   
 
 }, [searchTerm, countries])
 
@@ -36,6 +43,9 @@ useEffect(()=>{
 
   return (
     <div className="App">
+     
+     
+     
       <input
         type="text"
         name=""
@@ -52,6 +62,7 @@ useEffect(()=>{
             <th>Capital</th>
             <th>Continents</th>
             <th>Population</th>
+            <th> Currencies</th>
           </tr>
         </thead>
         <tbody>
@@ -62,8 +73,22 @@ useEffect(()=>{
               <td>{country.capital}</td>
               <td>{country.continents}</td>
               <td>{country.population}</td>
+               <td>
+               {
+                 country.currencies ? (
+                  Object.keys(country.currencies).map((currencyCode)=>
+                    (
+                      <li>
+                     {country.currencies[currencyCode].name} ({country.currencies[currencyCode].symbol})
+                      </li>
+                    )
+                  )
+                 ):""
+          }
+               </td>
             </tr>
           ))}
+          
         </tbody>
       </table>
     </div>
