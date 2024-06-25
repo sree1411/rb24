@@ -153,13 +153,21 @@ useEffect(()=>{
 
  
 useEffect(()=>{
-  let result = countries.filter((f)=>{
+  
+  if(search.toLocaleLowerCase() === ""){
+      setCountries([...countries])
+  }else{
+    let result = countries.filter((f)=>{
       return ((f.region && f.region.toLowerCase().includes(search.toLowerCase()))||
     
       ((f.capital && f.capital[0].toLowerCase().includes(search.toLowerCase())))
     )
   })
   setFiltered(result)
+  }
+
+
+ 
 }, [search])
 
  
