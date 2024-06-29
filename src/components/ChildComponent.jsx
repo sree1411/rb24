@@ -15,7 +15,7 @@ function ChildComponent ({count, updateValues}){
 
     return(
         <>
-        <h1> child component :{count}</h1>
+        <h1> child component ::{count}</h1>
         <button onClick={incBtn}> increment </button>
         <button onClick={decBtn}> decrement </button>
         </>
