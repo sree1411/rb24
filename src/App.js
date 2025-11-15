@@ -79,47 +79,22 @@ const poputionBtnHigh =()=>{
 }
 
   return (
-     <>
-     
-       <div className='button-section'>
-          <button onClick={regionBtnAtoZ}> Sort by Region A-Z </button>
-          <button onClick={regionBtnZtoA}> Sort by Region Z-A </button>
-          <button onClick={poputionBtnLow}> Sort by Population Low - High </button>
-          <button onClick={poputionBtnHigh} > Sort by Population High - Low </button>
-       </div>
-
-
-     <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">S.No</th>
-      <th scope="col">Region</th>
-      <th scope="col">Capital</th>
-      <th scope="col">Continents</th>
-      <th scope="col">Poluation</th>
-    </tr>
-  </thead>
-  <tbody>
-    {
-      countries.map((country,i)=>{
-        return <>
-          <tr>
-            <th scope="row">{i+1}</th>
-            <td>{country.region}</td>
-            <td>{country.capital}</td>
-            <td>{country.continents}</td>
-            <td>{country.population}</td>
-       
-          </tr>
-        </>
-      })
-    }
-  
-   
-  </tbody>
-</table>
-     
-     </>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
   );
 }
 
