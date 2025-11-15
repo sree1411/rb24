@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
+import BtnCounter from './components/BtnCounter';
+import TxtCounter from './components/TxtCounter';
 
 function App() {
 
